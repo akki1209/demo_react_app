@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import UserList from './user'
-import './App.css';
-import StateComponent from './StateComponent';
+import UserList from './components/user'
+import StateComponent from './components/StateComponent';
 
 class App extends Component {
 
