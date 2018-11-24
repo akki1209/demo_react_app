@@ -62,6 +62,10 @@ class UserList  extends Component {
     this.setState({ users: updateUsers, isEditing: false, user: {id: '', name: '', age: ''} })
   }
 
+  redirectToHello = () => {
+    this.props.history.push('/hello')
+  }
+
   render(){
     const { users, user, isEditing }= this.state;
 
@@ -73,15 +77,39 @@ class UserList  extends Component {
             { renderUserRow(users, this.handleDelete, this.editUser) }
           </tbody>
         </Table>
-        <Card>
-          <CardBody>
-            <UserForm user={ user } handleSubmit={isEditing ? this.updateUser : this.addUser} handleInputChange={this.handleInputChange} />
-          </CardBody>
-        </Card>
+        
+        <SelfCard myCompoment= {<UserForm user={ user } handleSubmit={isEditing ? this.updateUser : this.addUser} handleInputChange={this.handleInputChange} />} />
+
+        <button onClick={this.redirectToHello}> Recirect To home </button>
 
       </React.Fragment>
     )
   }
+}
+
+
+
+class SelfCard extends Component {
+
+  state = {
+    expand: true
+  }
+
+  handleExpandClick= () => {
+    this.setState({ expand: !this.state.expand })
+  }
+  
+  render() {
+    const {myCompoment} = this.props
+  return (
+    <Card>
+      <button onClick={this.handleExpandClick}>expand or collapse</button>
+      <CardBody className={ this.state.expand ? '' : "d-none" }>
+        { myCompoment }
+      </CardBody>
+    </Card>
+  )
+}
 }
 
 export default UserList;

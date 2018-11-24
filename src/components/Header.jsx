@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 import {
   Collapse,
   Navbar,
@@ -35,10 +37,10 @@ export default class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/user-feature">User Feature</NavLink>
+                <Link to="/user-feature">User Feature</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/hello">Hello</NavLink>
+                <Link to="/hello">Hello</Link>
               </NavItem>
             </Nav>
           </Collapse>

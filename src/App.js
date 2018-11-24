@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 import UserList from './components/user'
 import StateComponent from './components/StateComponent';
@@ -18,15 +19,20 @@ class App extends Component {
   render() {
 
     return (
-      <React.Fragment>
-        <Header />
-        <UserList theamColor={this.state.theamColor }/>
-        <StateComponent />
-        <Hello />
-
-        <button onClick={() => { this.handleTheamColorChange('blue')}}>Blue</button>
-        <button onClick={() => { this.handleTheamColorChange('red') }}> Red </button>
-      </React.Fragment>
+      <BrowserRouter>
+        <React.Fragment>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={StateComponent} />
+            <Route  path="/user-feature" component={UserList} />
+            <Route path="/user-feature/:id" component={Hello} />
+            <Route path="/hello" component={Hello} />
+          </Switch>
+          
+          <button onClick={() => { this.handleTheamColorChange('blue')}}>Blue</button>
+          <button onClick={() => { this.handleTheamColorChange('red') }}> Red </button>
+        </React.Fragment>
+      </BrowserRouter>
     );
   }
 }
