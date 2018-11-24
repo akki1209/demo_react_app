@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import UserList from './user'
 import './App.css';
+import StateComponent from './StateComponent';
 
 class App extends Component {
+
+  state = {
+    theamColor: 'red'
+  }
+
+  handleTheamColorChange = (colorName) => {
+    this.setState({ theamColor: colorName })
+  }
+
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <UserList theamColor={this.state.theamColor }/>
+        <StateComponent />
+
+        <button onClick={() => { this.handleTheamColorChange('blue')}}>Blue</button>
+        <button onClick={() => { this.handleTheamColorChange('red') }}> Red </button>
+      </React.Fragment>
     );
   }
 }
