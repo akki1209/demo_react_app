@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserTableHeader from './header';
+import { Card, CardBody, Table } from 'reactstrap';
 
 import UserRow from './UserRow';
 import UserForm from './UserForm'
@@ -66,13 +67,17 @@ class UserList  extends Component {
 
     return (
       <React.Fragment>
-        <table bgColor={this.props.theamColor}>
+        <Table bgColor={this.props.theamColor}>
           <UserTableHeader />
           <tbody>
             { renderUserRow(users, this.handleDelete, this.editUser) }
           </tbody>
-        </table>
-        <UserForm user={ user } handleSubmit={isEditing ? this.updateUser : this.addUser} handleInputChange={this.handleInputChange} />
+        </Table>
+        <Card>
+          <CardBody>
+            <UserForm user={ user } handleSubmit={isEditing ? this.updateUser : this.addUser} handleInputChange={this.handleInputChange} />
+          </CardBody>
+        </Card>
 
       </React.Fragment>
     )
